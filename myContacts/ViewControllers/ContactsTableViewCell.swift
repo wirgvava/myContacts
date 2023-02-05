@@ -11,6 +11,7 @@ class ContactsTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var surnameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
 
@@ -22,5 +23,6 @@ class ContactsTableViewCell: UITableViewCell {
     
     // MARK: - Actions
     @IBAction func callAction(_ sender: UIButton) {
+        
     }
 }

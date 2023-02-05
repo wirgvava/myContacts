@@ -31,7 +31,7 @@ class AddContactViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func saveContact(_ sender: UIBarButtonItem) {
-
+    
         let newContact = Contact(context: context)
         newContact.name = (nameTextField.text) ?? ""
         newContact.surname = (lastNameTextField.text) ?? ""
