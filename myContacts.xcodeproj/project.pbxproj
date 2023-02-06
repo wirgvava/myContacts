@@ -19,6 +19,7 @@
 		A52CF690298ED8090010979F /* DataBaseProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF68F298ED8090010979F /* DataBaseProperty.swift */; };
 		A52CF692298EED1C0010979F /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF691298EED1C0010979F /* AddContactViewController.swift */; };
 		A52CF694298EEDAF0010979F /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF693298EEDAF0010979F /* ContactsTableViewCell.swift */; };
+		A59500F3299039D0002070B8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59500F2299039D0002070B8 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		A52CF68F298ED8090010979F /* DataBaseProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseProperty.swift; sourceTree = "<group>"; };
 		A52CF691298EED1C0010979F /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		A52CF693298EEDAF0010979F /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		A59500F2299039D0002070B8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				A52CF66D298ECFDD0010979F /* ViewController.swift */,
 				A52CF691298EED1C0010979F /* AddContactViewController.swift */,
 				A52CF693298EEDAF0010979F /* ContactsTableViewCell.swift */,
+				A59500F2299039D0002070B8 /* ProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			files = (
 				A52CF689298ED6E90010979F /* Contact+CoreDataProperties.swift in Sources */,
 				A52CF674298ECFDD0010979F /* myContacts.xcdatamodeld in Sources */,
+				A59500F3299039D0002070B8 /* ProfileViewController.swift in Sources */,
 				A52CF66E298ECFDD0010979F /* ViewController.swift in Sources */,
 				A52CF690298ED8090010979F /* DataBaseProperty.swift in Sources */,
 				A52CF66A298ECFDD0010979F /* AppDelegate.swift in Sources */,

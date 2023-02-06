@@ -26,17 +26,19 @@ class AddContactViewController: UIViewController {
         super.viewDidLoad()
 
         imagePicker.delegate = self
+        addProfileImage.layer.cornerRadius = 75
     }
     
     
     // MARK: - Actions
     @IBAction func saveContact(_ sender: UIBarButtonItem) {
-    
         let newContact = Contact(context: context)
+        
         newContact.name = (nameTextField.text) ?? ""
         newContact.surname = (lastNameTextField.text) ?? ""
-        newContact.phoneNumber = (phoneNumberTextField.text) ?? ""
+        newContact.phoneNumber = phoneNumberTextField.text!
         newContact.profilePicture = addProfileImage.image?.pngData()
+    
         
         do{
             try context.save()
@@ -45,7 +47,8 @@ class AddContactViewController: UIViewController {
         catch let error as NSError{
             print(error)
         }
-       
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func uploadPhotoAction(_ sender: UIButton) {

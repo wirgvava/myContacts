@@ -6,7 +6,7 @@
 //
 
 import UIKit
-    // TODO: fix optional profile picture bug , add profile page and else 
+
 class ViewController: UIViewController {
     
     // MARK: - Outlets
@@ -70,18 +70,48 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    // Swipe to delete action
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if editingStyle == .delete {
+            showDeleteAlert(indexPath: indexPath)
+        }
+    }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //Alert ^
+    func showDeleteAlert(indexPath: IndexPath){
         let contacts = contacts[indexPath.row]
-        let alert = UIAlertController(title: "Delete", message: "Delete this Contact?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self]_ in
-            self?.deleteContact(contact: contacts)
+        let alert = UIAlertController(title: "Delete this number?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { [self] handlerYes in
+            deleteContact(contact: contacts)
         }))
-        
-        present(alert, animated: true)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 }
+    // Navigation
+extension ViewController {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row <= contacts.count - 1 {
+            self.openProfileViewController(index: indexPath)
+        }
+    }
+    
+    func openProfileViewController (index: IndexPath) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "profileViewController") as! ProfileViewController
+        let profileInfo = contacts[index.row]
+        
+        vc.set(data: (name: profileInfo.name,
+                      surname: profileInfo.surname,
+                      phoneNumber: profileInfo.phoneNumber,
+                      profilePicture: profileInfo.profilePicture))
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+
+}
+
 
     // MARK: - CRUD
 extension ViewController {
@@ -127,7 +157,7 @@ extension ViewController {
         }
     }
     
-    func updateContact(contact: Contact, newName: String?, newSurname: String?, newPhoneNumber: String?,                         newProfilePicture: Data?){
+    func updateContact(contact: Contact, newName: String?, newSurname: String?, newPhoneNumber: String,                         newProfilePicture: Data?){
         contact.name = newName
         contact.surname = newSurname
         contact.phoneNumber = newPhoneNumber

@@ -18,8 +18,11 @@ extension Contact {
 
     @NSManaged public var name: String?
     @NSManaged public var surname: String?
-    @NSManaged public var phoneNumber: String?
+    @NSManaged public var phoneNumber: String
     @NSManaged public var profilePicture: Data?
+    
+
+    
 
 }
 
