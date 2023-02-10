@@ -17,7 +17,6 @@ class AddContactViewController: UIViewController {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     
     // MARK: - Variables & Constants
-    let vc = ViewController()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var imagePicker = UIImagePickerController()
     
@@ -32,31 +31,28 @@ class AddContactViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func saveContact(_ sender: UIBarButtonItem) {
-        let newContact = Contact(context: context)
-        
-        newContact.name = (nameTextField.text) ?? ""
-        newContact.surname = (lastNameTextField.text) ?? ""
-        newContact.phoneNumber = phoneNumberTextField.text!
-        newContact.profilePicture = addProfileImage.image?.pngData()
+        saveContactAction()
+    }
     
-        
-        do{
-            try context.save()
-            vc.getAllContact()
-        }
-        catch let error as NSError{
-            print(error)
-        }
+    @IBAction func uploadPhotoAction(_ sender: UIButton) {
+        uploadPhoto()
+    }
+    
+    func uploadPhoto(){
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func saveContactAction(){
+        DataBaseProperty.shared.newContact(name: (nameTextField.text) ?? "",
+                                           surname: (lastNameTextField.text) ?? "",
+                                           phoneNumber: phoneNumberTextField.text!,
+                                           profilePicture: addProfileImage.image?.pngData())
         
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func uploadPhotoAction(_ sender: UIButton) {
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = true
-        present(imagePicker, animated: true, completion: nil)
-//        addProfileImage.isHidden = true
-    }
 }
 
 extension AddContactViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
