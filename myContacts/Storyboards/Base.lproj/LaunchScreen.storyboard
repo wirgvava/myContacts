@@ -14,8 +14,21 @@
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forLaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="EAx-rn-GBc">
+                                <rect key="frame" x="71.666666666666686" y="301" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="OZ8-Vj-XRU"/>
+                                    <constraint firstAttribute="height" constant="250" id="X90-aI-PDt"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.72941178080000002" green="0.38431376220000002" blue="0.37254902719999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="EAx-rn-GBc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="E2V-M7-d9K"/>
+                            <constraint firstItem="EAx-rn-GBc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="iO8-hc-DbN"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -23,4 +36,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="forLaunchScreen" width="1024" height="1024"/>
+    </resources>
 </document>

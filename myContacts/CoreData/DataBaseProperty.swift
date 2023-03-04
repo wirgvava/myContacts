@@ -12,6 +12,7 @@ class DataBaseProperty {
     
     static let shared = DataBaseProperty()
     
+    var filteredContacts: [Contact] = []
     var contacts = [Contact]()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -54,18 +55,26 @@ class DataBaseProperty {
         }
     }
     
-    func updateContact(contact: Contact, newName: String?, newSurname: String?, newPhoneNumber: String,                         newProfilePicture: Data?){
-        contact.name = newName
-        contact.surname = newSurname
-        contact.phoneNumber = newPhoneNumber
-        contact.profilePicture = newProfilePicture
-        
-        do{
-            try context.save()
-            getAllContact()
-        }
-        catch let error as NSError{
-            print(error)
+    func updateContact(newName: String?, newSurname: String?, newPhoneNumber: String, newProfilePicture: Data?){
+        do {
+            let contacts = try context.fetch(Contact.fetchRequest())
+            if let contact = contacts.first {
+                contact.name = newName
+                contact.surname = newSurname
+                contact.phoneNumber = newPhoneNumber
+                contact.profilePicture = newProfilePicture
+                
+                do {
+                    try context.save()
+                    print("Contact updated successfully.")
+                } catch {
+                    print("Error saving contact: \(error.localizedDescription)")
+                }
+            } else {
+                print("Contact not found.")
+            }
+        } catch {
+            print("Error fetching contact: \(error.localizedDescription)")
         }
     }
     

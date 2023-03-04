@@ -6,15 +6,18 @@
 //
 
 import UIKit
+import Loaf
 
 class AddContactViewController: UIViewController {
 
     // MARK: - Outlets
-    @IBOutlet weak var addProfileImage: UIImageView!
-    @IBOutlet weak var uploadPhotoBtn: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var addProfileImage: UIImageView!
+    @IBOutlet weak var uploadPhotoBtn: UIButton!
+    @IBOutlet weak var avatar: UIImageView!
+
     
     // MARK: - Variables & Constants
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -23,9 +26,8 @@ class AddContactViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupGestures()
         imagePicker.delegate = self
-        addProfileImage.layer.cornerRadius = 75
     }
     
     
@@ -38,19 +40,25 @@ class AddContactViewController: UIViewController {
         uploadPhoto()
     }
     
-    func uploadPhoto(){
+    // MARK: - Methods
+    private func uploadPhoto(){
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
     }
     
-    func saveContactAction(){
-        DataBaseProperty.shared.newContact(name: (nameTextField.text) ?? "",
-                                           surname: (lastNameTextField.text) ?? "",
-                                           phoneNumber: phoneNumberTextField.text!,
-                                           profilePicture: addProfileImage.image?.pngData())
+    private func saveContactAction(){
+        if phoneNumberTextField.text != "" {
+            DataBaseProperty.shared.newContact(name: (nameTextField.text) ?? "",
+                                               surname: (lastNameTextField.text) ?? "",
+                                               phoneNumber: phoneNumberTextField.text!,
+                                               profilePicture: addProfileImage.image?.pngData())
+            
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            Loaf("Phone number is missing.", state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+        }
         
-        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -61,5 +69,22 @@ extension AddContactViewController: UIImagePickerControllerDelegate, UINavigatio
             addProfileImage.image = image
         }
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// Gesture to dismiss keyboard
+extension AddContactViewController: UIGestureRecognizerDelegate {
+    private func setupGestures(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissSearchBar))
+        tapGesture.delegate = self
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissSearchBar(){
+       view.endEditing(true)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view == self.view
     }
 }

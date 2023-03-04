@@ -9,8 +9,9 @@ import UIKit
 
 class ContactsTableViewCell: UITableViewCell {
     
-    var phoneNumber = ""
     fileprivate var applicaton = UIApplication.shared
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     
     // MARK: - Outlets
     @IBOutlet weak var nameLabel: UILabel!
@@ -26,11 +27,11 @@ class ContactsTableViewCell: UITableViewCell {
     
     // MARK: - Actions
     @IBAction func callAction(_ sender: UIButton) {
-        if let phoneURL = URL(string: "tell://568861368"){
-            if applicaton.canOpenURL(phoneURL){
-                applicaton.open(phoneURL)
-            } else {
-                //alert
+        let phoneNumber = DataBaseProperty.shared.contacts.first?.phoneNumber
+        if let phoneCallURL = URL(string: "tel://" + phoneNumber!) {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
             }
         }
     }

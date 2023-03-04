@@ -19,7 +19,9 @@
 		A52CF690298ED8090010979F /* DataBaseProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF68F298ED8090010979F /* DataBaseProperty.swift */; };
 		A52CF692298EED1C0010979F /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF691298EED1C0010979F /* AddContactViewController.swift */; };
 		A52CF694298EEDAF0010979F /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF693298EEDAF0010979F /* ContactsTableViewCell.swift */; };
+		A56A72C929B2B51300BA4D64 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56A72C829B2B51300BA4D64 /* View+Extension.swift */; };
 		A59500F3299039D0002070B8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59500F2299039D0002070B8 /* ProfileViewController.swift */; };
+		A5D46C2529AFD5DF001EC0B2 /* Loaf in Frameworks */ = {isa = PBXBuildFile; productRef = A5D46C2429AFD5DF001EC0B2 /* Loaf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,7 @@
 		A52CF68F298ED8090010979F /* DataBaseProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseProperty.swift; sourceTree = "<group>"; };
 		A52CF691298EED1C0010979F /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		A52CF693298EEDAF0010979F /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		A56A72C829B2B51300BA4D64 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		A59500F2299039D0002070B8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D46C2529AFD5DF001EC0B2 /* Loaf in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +74,7 @@
 		A52CF668298ECFDD0010979F /* myContacts */ = {
 			isa = PBXGroup;
 			children = (
+				A56A72C729B2B4F900BA4D64 /* Extensions */,
 				A52CF68C298ED72C0010979F /* Assets */,
 				A52CF68A298ED6F60010979F /* CoreData */,
 				A52CF68E298ED7550010979F /* ViewControllers */,
@@ -128,6 +133,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		A56A72C729B2B4F900BA4D64 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A56A72C829B2B51300BA4D64 /* View+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +157,9 @@
 			dependencies = (
 			);
 			name = myContacts;
+			packageProductDependencies = (
+				A5D46C2429AFD5DF001EC0B2 /* Loaf */,
+			);
 			productName = myContacts;
 			productReference = A52CF666298ECFDD0010979F /* myContacts.app */;
 			productType = "com.apple.product-type.application";
@@ -172,6 +188,9 @@
 				Base,
 			);
 			mainGroup = A52CF65D298ECFDD0010979F;
+			packageReferences = (
+				A5D46C2329AFD5DF001EC0B2 /* XCRemoteSwiftPackageReference "Loaf" */,
+			);
 			productRefGroup = A52CF667298ECFDD0010979F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -206,6 +225,7 @@
 				A52CF690298ED8090010979F /* DataBaseProperty.swift in Sources */,
 				A52CF66A298ECFDD0010979F /* AppDelegate.swift in Sources */,
 				A52CF692298EED1C0010979F /* AddContactViewController.swift in Sources */,
+				A56A72C929B2B51300BA4D64 /* View+Extension.swift in Sources */,
 				A52CF66C298ECFDD0010979F /* SceneDelegate.swift in Sources */,
 				A52CF694298EEDAF0010979F /* ContactsTableViewCell.swift in Sources */,
 				A52CF688298ED6E90010979F /* Contact+CoreDataClass.swift in Sources */,
@@ -355,6 +375,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NW6K64987Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = myContacts/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -384,6 +405,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NW6K64987Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = myContacts/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -428,6 +450,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A5D46C2329AFD5DF001EC0B2 /* XCRemoteSwiftPackageReference "Loaf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/schmidyy/Loaf";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A5D46C2429AFD5DF001EC0B2 /* Loaf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5D46C2329AFD5DF001EC0B2 /* XCRemoteSwiftPackageReference "Loaf" */;
+			productName = Loaf;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A52CF672298ECFDD0010979F /* myContacts.xcdatamodeld */ = {
