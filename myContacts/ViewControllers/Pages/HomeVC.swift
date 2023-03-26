@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class HomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         
     // MARK: - Outlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -16,13 +16,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var contactsCountLabel: UILabel!
     
     // MARK: - Variables & Contstants
+    let delegate = UIApplication.shared.delegate as! AppDelegate
     let refreshControll = UIRefreshControl()
-    var contacts: [Contact] = []
-    var searchText = ""{
-        didSet{
-            filterDataName()
-        }
-    }
+    var fetchedResultsController: NSFetchedResultsController<Contact>!
+    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
 
     // MARK: - View Life Cycle
@@ -30,7 +27,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupGestures()
         searchBarSearchButtonClicked(searchBar)
-        DataBaseProperty.shared.getAllContact()
+        getAllData()
         refreshControll.backgroundColor = UIColor.clear
         refreshControll.tintColor = UIColor.orange
         refreshControll.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
@@ -38,56 +35,63 @@ class ViewController: UIViewController {
         self.searchBar.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.reloadData()
+        self.tableView.reloadData()
+        
+        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
+        
     }
-  
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.reloadData()
-    }
-    
     
     // MARK: - Methods
     
     @objc func refresh(){
-        DataBaseProperty.shared.getAllContact()
-        self.reloadData()
+        getAllData()
+        self.tableView.reloadData()
         refreshControll.endRefreshing()
     }
     
-    func filterDataName () {
-        DataBaseProperty.shared.filteredContacts = DataBaseProperty.shared.contacts.filter { value in
-            let nameMatch = value.name?.range(of: searchText, options: .caseInsensitive)
-            let surnameMatch = value.surname?.range(of: searchText, options: .caseInsensitive)
-            let phoneNumberMatch = value.phoneNumber.range(of: searchText, options: .caseInsensitive)
-
-            return nameMatch != nil || surnameMatch != nil || phoneNumberMatch != nil
+    
+    func getAllData(){
+        if self.fetchedResultsController == nil{
+            let request = Contact.createFetchRequest()
+            let sort = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sort]
+            request.fetchBatchSize = 20
+            
+            self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            
+            self.fetchedResultsController.delegate = self
+            
+            do{
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch let error as NSError {
+                print("Error at getAllData(): \(error.localizedDescription)")
+            }
         }
-        self.reloadData()
     }
-    
-    func reloadData(){
-        if searchText != "" {
-            self.contacts = DataBaseProperty.shared.filteredContacts
-        } else {
-            self.contacts = DataBaseProperty.shared.contacts
-        }
-        tableView.reloadData()
-    }
-    
-    
 }
 
+
+
 // TableView
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeVC: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.fetchedResultsController.sections?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.fetchedResultsController.sections![section].name
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.contacts.count
+        let sectionInfo = self.self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactsTableViewCell
-        let contacts = self.contacts[indexPath.row]
-        
+        let contacts = self.fetchedResultsController.object(at: indexPath)
+        cell.contactIndex = indexPath.row
         cell.surnameLabel.text = contacts.surname
 
         if contacts.name == "" && contacts.surname == "" {
@@ -105,23 +109,22 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let firstLetterOfName = name?.prefix(1).uppercased()
             let firstLetterOfSurname = surname?.prefix(1).uppercased()
             let initials = "\(firstLetterOfName ?? "")\(firstLetterOfSurname ?? "")"
-            let image = generateImageWithInitials(initials: initials)
+            let image = HomeVC.generateImageWithInitials(initials: initials)
             cell.profileImage.image = image
         }
         
-        if self.contacts.count == 0 {
+        if self.fetchedResultsController.fetchedObjects?.count == 0 {
             contactsCountLabel.text = ""
-        } else  if self.contacts.count == 1 {
-            contactsCountLabel.text = "\(self.contacts.count) Contact"
+        } else  if self.fetchedResultsController.fetchedObjects?.count == 1 {
+            contactsCountLabel.text = "\(String(describing: self.fetchedResultsController.fetchedObjects!.count)) Contact"
         } else {
-            contactsCountLabel.text = "\(self.contacts.count) Contacts"
+            contactsCountLabel.text = "\(String(describing: self.fetchedResultsController.fetchedObjects!.count)) Contacts"
         }
-        
        return cell
     }
     
     // Image with Initials if profile picture is not set
-    func generateImageWithInitials(initials: String) -> UIImage {
+    static func generateImageWithInitials(initials: String) -> UIImage {
         let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = frame
@@ -150,36 +153,47 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     //Alert ^
     func showDeleteAlert(indexPath: IndexPath){
-        let contacts = DataBaseProperty.shared.contacts[indexPath.row]
+        let contacts = self.fetchedResultsController.object(at: indexPath)
         let alert = UIAlertController(title: "Delete this number?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { [self] handlerYes in
-            DataBaseProperty.shared.deleteContact(contact: contacts)
-            self.reloadData()
+            context.delete(contacts)
+            delegate.saveContext()
+            self.tableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            self.tableView.deleteRows(at: [indexPath!], with: .automatic)
+            self.tableView.reloadData()
+            
+        case .insert:
+            self.tableView.reloadData()
+            
+        case .update:
+            self.tableView.reloadData()
+        default:
+            break
+        }
     }
 }
 
 
 // Navigation
-extension ViewController {
+extension HomeVC {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row <= self.contacts.count - 1 {
-            self.openProfileViewController(index: indexPath)
-        }
-    }
-    
-    func openProfileViewController (index: IndexPath) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "profileViewController") as! ProfileViewController
-        let profileInfo = self.contacts[index.row]
-  
+        let vc = storyboard.instantiateViewController(withIdentifier: "profileViewController") as! ProfileVC
+        let profileInfo = self.fetchedResultsController.object(at: indexPath)
+        vc.contactIndex = indexPath.row
         vc.set(data: (name: profileInfo.name,
                       surname: profileInfo.surname,
                       phoneNumber: profileInfo.phoneNumber,
                       profilePicture: profileInfo.profilePicture))
-        
+        self.tableView.reloadData()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -187,16 +201,24 @@ extension ViewController {
 
 
 // Search
-extension ViewController: UISearchBarDelegate {
+extension HomeVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchText = searchText
+        if searchText.isEmpty {
+            fetchedResultsController.fetchRequest.predicate = nil
+        } else {
+            fetchedResultsController.fetchRequest.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+        }
+        
+        try? fetchedResultsController.performFetch()
+        self.tableView.reloadData()
     }
+    
+    
 }
 
 
-
 // Gesture to dismiss keyboard after Searching
-extension ViewController: UIGestureRecognizerDelegate {
+extension HomeVC: UIGestureRecognizerDelegate {
     func setupGestures(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGesture.delegate = self
@@ -211,7 +233,6 @@ extension ViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return touch.view == self.tableView
     }
-    
   
     func tableViewDidScroll(_ tableView: UITableView) {
         searchBar.resignFirstResponder()
