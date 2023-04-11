@@ -11,6 +11,7 @@ import CoreData
 
 class ProfileVC: UIViewController {
     
+    // MARK: - Variables & Constants
     var imagePicker = UIImagePickerController()
     let delegate = UIApplication.shared.delegate as! AppDelegate
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -37,7 +38,8 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var editLastnameTextField: UITextField!
     @IBOutlet weak var editPhoneNumberTextField: UITextField!
     @IBOutlet weak var uploadPhotoBtn: UIButton!
-    
+    @IBOutlet weak var textFieldsBG: UIView!
+    @IBOutlet var textFieldIcons: [UIImageView]!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -49,13 +51,13 @@ class ProfileVC: UIViewController {
         request.sortDescriptors = [sort]
         imagePicker.delegate = self
         editPhoneNumberTextField.delegate = self
-        self.navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
+        overrideUserInterfaceStyle = .light
     }
     
     
     // MARK: - Actions
     @IBAction func backAction(_ sender: UIButton) {
-        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func cancelAction(_ sender: UIButton) {
@@ -106,6 +108,7 @@ class ProfileVC: UIViewController {
         nameLabel.text = data.name
         surnameLabel.text = data.surname
         phoneNumberLabel.text = data.phoneNumber
+        self.uploadPhotoBtn.layer.cornerRadius = self.uploadPhotoBtn.frame.height / 2
         
         do {
             let contact = try context.fetch(request)
@@ -130,17 +133,14 @@ class ProfileVC: UIViewController {
             let firstLetterOfName = name?.prefix(1).uppercased()
             let firstLetterOfSurname = surname?.prefix(1).uppercased()
             let initials = "\(firstLetterOfName ?? "")\(firstLetterOfSurname ?? "")"
-            let image = HomeVC.generateImageWithInitials(initials: initials)
+            let image = ContactsTableViewCell.generateImageWithInitials(image: profilePicture, initials: initials)
             profilePicture.image = image
         }
     }
     
     private func save(){
-        updateContact(newName: editNameTextField.text,
-                      newSurname: editLastnameTextField.text,
-                      newPhoneNumber: editPhoneNumberTextField.text!,
-                      newProfilePicture: profilePicture.image?.pngData())
-        
+        updateContact(newName: editNameTextField.text, newSurname: editLastnameTextField.text,
+                      newPhoneNumber: editPhoneNumberTextField.text!, newProfilePicture: profilePicture.image?.pngData())
         nameLabel.text = editNameTextField.text
         surnameLabel.text = editLastnameTextField.text
         phoneNumberLabel.text = editPhoneNumberTextField.text
@@ -181,7 +181,7 @@ class ProfileVC: UIViewController {
     }
 }
 
-// Massage
+// MARK: - Massage
 extension ProfileVC: MFMessageComposeViewControllerDelegate {
     func sendMessage() {
         if MFMessageComposeViewController.canSendText() {
@@ -225,7 +225,7 @@ extension ProfileVC: MFMessageComposeViewControllerDelegate {
 
 }
 
-// ImagePicker delegate
+// MARK: - ImagePickerController
 extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
@@ -236,7 +236,7 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
 }
 
 
-// Gesture to dismiss keyboard after editing
+// MARK: - Gesture to dismiss keyboard after editing
 extension ProfileVC: UIGestureRecognizerDelegate {
     func setupGestures(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -254,7 +254,7 @@ extension ProfileVC: UIGestureRecognizerDelegate {
 }
 
 
-// textField
+// MARK: - TextFieldDelegate
 extension ProfileVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = editPhoneNumberTextField.text ?? ""
@@ -278,9 +278,13 @@ extension ProfileVC: UITextFieldDelegate {
 
 
 
-// Show & Hide edit page
+// MARK: - Show & Hide edit page
 extension ProfileVC {
     private func hideEditPage(){
+        for icon in textFieldIcons {
+            icon.isHidden = true
+        }
+        textFieldsBG.isHidden = true
         uploadPhotoBtn.isHidden = true
         editNameTextField.isHidden = true
         editLastnameTextField.isHidden = true
@@ -298,6 +302,10 @@ extension ProfileVC {
     }
     
     private func showEditPage(){
+        for icon in textFieldIcons {
+            icon.isHidden = false
+        }
+        textFieldsBG.isHidden = false
         uploadPhotoBtn.isHidden = false
         editNameTextField.isHidden = false
         editLastnameTextField.isHidden = false
@@ -317,6 +325,10 @@ extension ProfileVC {
     }
     
     private func loadEditPageAsHidden(){
+        for icon in textFieldIcons {
+            icon.isHidden = true
+        }
+        textFieldsBG.isHidden = true
         uploadPhotoBtn.isHidden = true
         editNameTextField.isHidden = true
         editLastnameTextField.isHidden = true

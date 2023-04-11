@@ -2,7 +2,7 @@
 //  Contact+CoreDataProperties.swift
 //  myContacts
 //
-//  Created by konstantine on 04.02.23.
+//  Created by konstantine on 12.04.23.
 //
 //
 
@@ -12,16 +12,15 @@ import CoreData
 
 extension Contact {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Contact> {
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Contact> {
         return NSFetchRequest<Contact>(entityName: "Contact")
     }
 
+    @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String?
-    @NSManaged public var surname: String?
     @NSManaged public var phoneNumber: String
     @NSManaged public var profilePicture: Data?
-
-    
+    @NSManaged public var surname: String?
 
 }
 

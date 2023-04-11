@@ -2,7 +2,7 @@
 //  Contact+CoreDataClass.swift
 //  myContacts
 //
-//  Created by konstantine on 04.02.23.
+//  Created by konstantine on 12.04.23.
 //
 //
 

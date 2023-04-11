@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50A460129E5DAB50083AE3D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50A460029E5DAB50083AE3D /* UIImageView+Extension.swift */; };
+		A50A460C29E61FFF0083AE3D /* Contact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50A460A29E61FFF0083AE3D /* Contact+CoreDataClass.swift */; };
+		A50A460D29E61FFF0083AE3D /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50A460B29E61FFF0083AE3D /* Contact+CoreDataProperties.swift */; };
 		A52CF66A298ECFDD0010979F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF669298ECFDD0010979F /* AppDelegate.swift */; };
 		A52CF66C298ECFDD0010979F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF66B298ECFDD0010979F /* SceneDelegate.swift */; };
 		A52CF66E298ECFDD0010979F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF66D298ECFDD0010979F /* HomeVC.swift */; };
@@ -16,9 +19,15 @@
 		A52CF679298ECFDE0010979F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A52CF677298ECFDE0010979F /* LaunchScreen.storyboard */; };
 		A52CF692298EED1C0010979F /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF691298EED1C0010979F /* AddContactVC.swift */; };
 		A52CF694298EEDAF0010979F /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CF693298EEDAF0010979F /* ContactsTableViewCell.swift */; };
+		A5408B1029E4B21B00919209 /* sf-ui-display-black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0829E4B1D700919209 /* sf-ui-display-black.otf */; };
+		A5408B1129E4B21E00919209 /* sf-ui-display-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0929E4B1D700919209 /* sf-ui-display-bold.otf */; };
+		A5408B1229E4B22100919209 /* sf-ui-display-heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0B29E4B1D700919209 /* sf-ui-display-heavy.otf */; };
+		A5408B1329E4B22400919209 /* sf-ui-display-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0C29E4B1D700919209 /* sf-ui-display-light.otf */; };
+		A5408B1429E4B22800919209 /* sf-ui-display-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0F29E4B1D700919209 /* sf-ui-display-medium.otf */; };
+		A5408B1529E4B22B00919209 /* sf-ui-display-semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0A29E4B1D700919209 /* sf-ui-display-semibold.otf */; };
+		A5408B1629E4B22D00919209 /* sf-ui-display-thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0E29E4B1D700919209 /* sf-ui-display-thin.otf */; };
+		A5408B1729E4B23100919209 /* sf-ui-display-ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0D29E4B1D700919209 /* sf-ui-display-ultralight.otf */; };
 		A56A72C929B2B51300BA4D64 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56A72C829B2B51300BA4D64 /* View+Extension.swift */; };
-		A579284A29B4AD2A005FFB70 /* Contact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579284829B4AD2A005FFB70 /* Contact+CoreDataClass.swift */; };
-		A579284B29B4AD2A005FFB70 /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579284929B4AD2A005FFB70 /* Contact+CoreDataProperties.swift */; };
 		A59500F3299039D0002070B8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59500F2299039D0002070B8 /* ProfileVC.swift */; };
 		A5BB54B829B4C151009F5B65 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB54B729B4C151009F5B65 /* FavoritesVC.swift */; };
 		A5BB54BA29B4C163009F5B65 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB54B929B4C163009F5B65 /* FavoritesTableViewCell.swift */; };
@@ -26,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A50A460029E5DAB50083AE3D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		A50A460A29E61FFF0083AE3D /* Contact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A50A460B29E61FFF0083AE3D /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A52CF666298ECFDD0010979F /* myContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A52CF669298ECFDD0010979F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A52CF66B298ECFDD0010979F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,9 +49,15 @@
 		A52CF67A298ECFDE0010979F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A52CF691298EED1C0010979F /* AddContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
 		A52CF693298EEDAF0010979F /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		A5408B0829E4B1D700919209 /* sf-ui-display-black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-black.otf"; sourceTree = "<group>"; };
+		A5408B0929E4B1D700919209 /* sf-ui-display-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-bold.otf"; sourceTree = "<group>"; };
+		A5408B0A29E4B1D700919209 /* sf-ui-display-semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-semibold.otf"; sourceTree = "<group>"; };
+		A5408B0B29E4B1D700919209 /* sf-ui-display-heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-heavy.otf"; sourceTree = "<group>"; };
+		A5408B0C29E4B1D700919209 /* sf-ui-display-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-light.otf"; sourceTree = "<group>"; };
+		A5408B0D29E4B1D700919209 /* sf-ui-display-ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-ultralight.otf"; sourceTree = "<group>"; };
+		A5408B0E29E4B1D700919209 /* sf-ui-display-thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-thin.otf"; sourceTree = "<group>"; };
+		A5408B0F29E4B1D700919209 /* sf-ui-display-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-medium.otf"; sourceTree = "<group>"; };
 		A56A72C829B2B51300BA4D64 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
-		A579284829B4AD2A005FFB70 /* Contact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Contact+CoreDataClass.swift"; path = "../../Contact+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A579284929B4AD2A005FFB70 /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Contact+CoreDataProperties.swift"; path = "../../Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A59500F2299039D0002070B8 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		A5BB54B729B4C151009F5B65 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		A5BB54B929B4C163009F5B65 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -76,11 +94,12 @@
 		A52CF668298ECFDD0010979F /* myContacts */ = {
 			isa = PBXGroup;
 			children = (
-				A56A72C729B2B4F900BA4D64 /* Extensions */,
 				A52CF68C298ED72C0010979F /* Assets */,
 				A52CF68A298ED6F60010979F /* CoreData */,
+				A56A72C729B2B4F900BA4D64 /* Extensions */,
 				A52CF68E298ED7550010979F /* ViewControllers */,
 				A52CF68D298ED7460010979F /* Storyboards */,
+				A5408B0729E4B1A100919209 /* Fonts */,
 				A52CF68B298ED7200010979F /* Supporting files */,
 				A52CF67A298ECFDE0010979F /* Info.plist */,
 			);
@@ -90,9 +109,9 @@
 		A52CF68A298ED6F60010979F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				A50A460A29E61FFF0083AE3D /* Contact+CoreDataClass.swift */,
+				A50A460B29E61FFF0083AE3D /* Contact+CoreDataProperties.swift */,
 				A52CF672298ECFDD0010979F /* myContacts.xcdatamodeld */,
-				A579284829B4AD2A005FFB70 /* Contact+CoreDataClass.swift */,
-				A579284929B4AD2A005FFB70 /* Contact+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -132,10 +151,26 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		A5408B0729E4B1A100919209 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A5408B0829E4B1D700919209 /* sf-ui-display-black.otf */,
+				A5408B0929E4B1D700919209 /* sf-ui-display-bold.otf */,
+				A5408B0B29E4B1D700919209 /* sf-ui-display-heavy.otf */,
+				A5408B0C29E4B1D700919209 /* sf-ui-display-light.otf */,
+				A5408B0F29E4B1D700919209 /* sf-ui-display-medium.otf */,
+				A5408B0A29E4B1D700919209 /* sf-ui-display-semibold.otf */,
+				A5408B0E29E4B1D700919209 /* sf-ui-display-thin.otf */,
+				A5408B0D29E4B1D700919209 /* sf-ui-display-ultralight.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		A56A72C729B2B4F900BA4D64 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A56A72C829B2B51300BA4D64 /* View+Extension.swift */,
+				A50A460029E5DAB50083AE3D /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,8 +260,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A52CF679298ECFDE0010979F /* LaunchScreen.storyboard in Resources */,
+				A5408B1229E4B22100919209 /* sf-ui-display-heavy.otf in Resources */,
 				A52CF676298ECFDE0010979F /* Assets.xcassets in Resources */,
+				A5408B1129E4B21E00919209 /* sf-ui-display-bold.otf in Resources */,
+				A5408B1429E4B22800919209 /* sf-ui-display-medium.otf in Resources */,
+				A5408B1529E4B22B00919209 /* sf-ui-display-semibold.otf in Resources */,
+				A5408B1629E4B22D00919209 /* sf-ui-display-thin.otf in Resources */,
+				A5408B1729E4B23100919209 /* sf-ui-display-ultralight.otf in Resources */,
 				A52CF671298ECFDD0010979F /* Main.storyboard in Resources */,
+				A5408B1029E4B21B00919209 /* sf-ui-display-black.otf in Resources */,
+				A5408B1329E4B22400919209 /* sf-ui-display-light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,16 +281,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A52CF674298ECFDD0010979F /* myContacts.xcdatamodeld in Sources */,
-				A579284B29B4AD2A005FFB70 /* Contact+CoreDataProperties.swift in Sources */,
+				A50A460129E5DAB50083AE3D /* UIImageView+Extension.swift in Sources */,
 				A59500F3299039D0002070B8 /* ProfileVC.swift in Sources */,
 				A52CF66E298ECFDD0010979F /* HomeVC.swift in Sources */,
 				A52CF66A298ECFDD0010979F /* AppDelegate.swift in Sources */,
-				A579284A29B4AD2A005FFB70 /* Contact+CoreDataClass.swift in Sources */,
 				A52CF692298EED1C0010979F /* AddContactVC.swift in Sources */,
 				A5BB54B829B4C151009F5B65 /* FavoritesVC.swift in Sources */,
+				A50A460D29E61FFF0083AE3D /* Contact+CoreDataProperties.swift in Sources */,
 				A5BB54BA29B4C163009F5B65 /* FavoritesTableViewCell.swift in Sources */,
 				A56A72C929B2B51300BA4D64 /* View+Extension.swift in Sources */,
 				A52CF66C298ECFDD0010979F /* SceneDelegate.swift in Sources */,
+				A50A460C29E61FFF0083AE3D /* Contact+CoreDataClass.swift in Sources */,
 				A52CF694298EEDAF0010979F /* ContactsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -378,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -401,9 +445,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -412,6 +455,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.K.myContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -431,9 +477,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -442,6 +487,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.K.myContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

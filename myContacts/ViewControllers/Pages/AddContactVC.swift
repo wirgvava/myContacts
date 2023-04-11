@@ -17,13 +17,11 @@ class AddContactVC: UIViewController {
     @IBOutlet weak var addProfileImage: UIImageView!
     @IBOutlet weak var uploadPhotoBtn: UIButton!
     @IBOutlet weak var avatar: UIImageView!
-
     
     // MARK: - Variables & Constants
     let delegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var imagePicker = UIImagePickerController()
-
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -31,12 +29,16 @@ class AddContactVC: UIViewController {
         setupGestures()
         imagePicker.delegate = self
         phoneNumberTextField.delegate = self
+        uploadPhotoBtn.layer.cornerRadius = uploadPhotoBtn.frame.height / 2
+        navigationController?.navigationBar.isHidden = false
+        overrideUserInterfaceStyle = .light
     }
     
     
     // MARK: - Actions
     @IBAction func saveContact(_ sender: UIBarButtonItem) {
         saveContactAction()
+        navigationController?.navigationBar.isHidden = true
     }
     
     @IBAction func uploadPhotoAction(_ sender: UIButton) {
@@ -52,14 +54,13 @@ class AddContactVC: UIViewController {
     
     private func saveContactAction(){
         if phoneNumberTextField.text != "" {
-            newContact(name: (nameTextField.text) ?? "",
-                              surname: (lastNameTextField.text) ?? "",
-                              phoneNumber: phoneNumberTextField.text!,
-                              profilePicture: addProfileImage.image?.pngData())
+            newContact(name: (nameTextField.text) ?? "", surname: (lastNameTextField.text) ?? "",
+                       phoneNumber: phoneNumberTextField.text!, profilePicture: addProfileImage.image?.pngData())
             
         self.navigationController?.popViewController(animated: true)
         } else {
-            Loaf("Phone number is missing.", state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+            let error = "Phone number is missing."
+            Loaf(error, state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }
     }
     
@@ -71,9 +72,9 @@ class AddContactVC: UIViewController {
         newContact.profilePicture = profilePicture
         delegate.saveContext()
     }
-
 }
 
+// MARK: - TextFieldDelegate
 extension AddContactVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = phoneNumberTextField.text ?? ""
@@ -95,6 +96,7 @@ extension AddContactVC: UITextFieldDelegate {
     }
 }
 
+// MARK: - ImagePickerController
 extension AddContactVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
@@ -104,7 +106,8 @@ extension AddContactVC: UIImagePickerControllerDelegate, UINavigationControllerD
     }
 }
 
-// Gesture to dismiss keyboard
+
+// MARK: - Gesture to dismiss keyboard
 extension AddContactVC: UIGestureRecognizerDelegate {
     private func setupGestures(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissSearchBar))

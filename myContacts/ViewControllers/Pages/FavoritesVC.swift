@@ -10,24 +10,30 @@ import CoreData
 
 class FavoritesVC: UIViewController, NSFetchedResultsControllerDelegate {
     
+    // MARK: - Variables & Constants
     let refreshControll = UIRefreshControl()
     var fetchedResultsController: NSFetchedResultsController<Contact>!
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
+    // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         getFavoriteContacts()
         refreshControll.backgroundColor = UIColor.clear
-        refreshControll.tintColor = UIColor.orange
+        refreshControll.tintColor = UIColor.darkGray
         refreshControll.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControll)
+        tableView.separatorStyle = .none
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.reloadData()
+        overrideUserInterfaceStyle = .light
     }
     
+    // MARK: - Methods
     @objc func refresh(){
         self.getFavoriteContacts()
         self.tableView.reloadData()
@@ -57,6 +63,8 @@ class FavoritesVC: UIViewController, NSFetchedResultsControllerDelegate {
     }
 }
 
+
+// MARK: - TableView
 extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
@@ -66,25 +74,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritesTableViewCell
         let contacts = self.fetchedResultsController.object(at: indexPath)
-        cell.surnameLabel.text = contacts.surname
-
-        if contacts.name == "" && contacts.surname == "" {
-            cell.nameLabel.text = contacts.phoneNumber
-        } else {
-            cell.nameLabel.text = contacts.name
-        }
-       
-        if contacts.profilePicture != nil {
-            cell.profilePicture?.image = UIImage(data: contacts.profilePicture!)
-        } else {
-            let name = contacts.name
-            let surname = contacts.surname
-            let firstLetterOfName = name?.prefix(1).uppercased()
-            let firstLetterOfSurname = surname?.prefix(1).uppercased()
-            let initials = "\(firstLetterOfName ?? "")\(firstLetterOfSurname ?? "")"
-            let image = HomeVC.generateImageWithInitials(initials: initials)
-            cell.profilePicture.image = image
-        }
+        cell.configure(contacts: contacts, contactIndex: indexPath.row)
         return cell
     }
     
@@ -93,10 +83,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         let vc = storyboard.instantiateViewController(withIdentifier: "profileViewController") as! ProfileVC
         let profileInfo = self.fetchedResultsController.object(at: indexPath)
         vc.contactIndex = indexPath.row
-        vc.set(data: (name: profileInfo.name,
-                      surname: profileInfo.surname,
-                      phoneNumber: profileInfo.phoneNumber,
-                      profilePicture: profileInfo.profilePicture))
+        vc.set(data: (name: profileInfo.name, surname: profileInfo.surname, phoneNumber: profileInfo.phoneNumber, profilePicture: profileInfo.profilePicture))
         self.tableView.reloadData()
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -105,12 +92,9 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         switch type {
         case .update:
             self.tableView.reloadData()
-
         case .insert:
             self.tableView.reloadData()
-            
-            
-        default:
+       default:
             break
         }
     }
