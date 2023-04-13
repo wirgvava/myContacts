@@ -1,32 +1,32 @@
 //
-//  FavoritesTableViewCell.swift
+//  TableTableViewController.swift
 //  myContacts
 //
-//  Created by konstantine on 05.03.23.
+//  Created by konstantine on 04.02.23.
 //
 
 import UIKit
 
-class FavoritesTableViewCell: UITableViewCell {
+class ContactsTableViewCell: UITableViewCell {
     
     // MARK: - Variables & Constants
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var contactIndex: Int = 0
     
     // MARK: - Outlets
-    @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var surnameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var surnameLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var containerView: UIView!
     
     // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        profilePicture.applyshadowWithCorner(containerView: containerView, cornerRadious: profilePicture.frame.width / 2)
+        profileImage.applyshadowWithCorner(containerView: containerView, cornerRadious: profileImage.frame.width / 2)
     }
-
+    
     // MARK: - Actions
-    @IBAction func callAction(_ sender: Any) {
+    @IBAction func callAction(_ sender: UIButton) {
         let request = Contact.createFetchRequest()
         let sort = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [sort]
@@ -51,17 +51,18 @@ class FavoritesTableViewCell: UITableViewCell {
         } else {
             nameLabel.text = contacts.name
         }
+        
        
         if contacts.profilePicture != nil {
-            profilePicture?.image = UIImage(data: contacts.profilePicture!)
+            profileImage?.image = UIImage(data: contacts.profilePicture!)
         } else {
             let name = contacts.name
             let surname = contacts.surname
             let firstLetterOfName = name?.prefix(1).uppercased()
             let firstLetterOfSurname = surname?.prefix(1).uppercased()
             let initials = "\(firstLetterOfName ?? "")\(firstLetterOfSurname ?? "")"
-            let image = ContactsTableViewCell.generateImageWithInitials(image: profilePicture, initials: initials)
-            profilePicture.image = image
+            let image = generateImageWithInitials(image: profileImage, initials: initials)
+            profileImage.image = image
         }
     }
 }

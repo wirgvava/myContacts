@@ -19,4 +19,16 @@ extension UIImageView {
         containerView.layer.shadowRadius = 2.0
         self.clipsToBounds = true
     }
+    
+    func applyshadowWithCornerInProfilePage(containerView : UIView, cornerRadious : CGFloat){
+        containerView.clipsToBounds = false
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = cornerRadious
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowPath = UIBezierPath(roundedRect: self.frame, cornerRadius: cornerRadious).cgPath
+        containerView.layer.shadowOffset = CGSize(width: 4.0, height: 7.0)
+        containerView.layer.shadowOpacity = 0.5
+        containerView.layer.shadowRadius = 6.0
+        self.clipsToBounds = true
+    }
 }

@@ -25,6 +25,7 @@ class ProfileVC: UIViewController {
     @IBOutlet var surnameLabel: UILabel!
     @IBOutlet var phoneNumberLabel: UILabel!
     @IBOutlet var profilePicture: UIImageView!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
@@ -49,6 +50,7 @@ class ProfileVC: UIViewController {
         loadProfilePicture()
         loadEditPageAsHidden()
         request.sortDescriptors = [sort]
+        profilePicture.applyshadowWithCornerInProfilePage(containerView: containerView, cornerRadious: profilePicture.frame.height / 2)
         imagePicker.delegate = self
         editPhoneNumberTextField.delegate = self
         navigationController?.navigationBar.isHidden = true
@@ -133,7 +135,7 @@ class ProfileVC: UIViewController {
             let firstLetterOfName = name?.prefix(1).uppercased()
             let firstLetterOfSurname = surname?.prefix(1).uppercased()
             let initials = "\(firstLetterOfName ?? "")\(firstLetterOfSurname ?? "")"
-            let image = ContactsTableViewCell.generateImageWithInitials(image: profilePicture, initials: initials)
+            let image = generateImageWithInitials(image: profilePicture, initials: initials)
             profilePicture.image = image
         }
     }

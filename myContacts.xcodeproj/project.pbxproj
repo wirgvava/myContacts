@@ -28,6 +28,7 @@
 		A5408B1629E4B22D00919209 /* sf-ui-display-thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0E29E4B1D700919209 /* sf-ui-display-thin.otf */; };
 		A5408B1729E4B23100919209 /* sf-ui-display-ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5408B0D29E4B1D700919209 /* sf-ui-display-ultralight.otf */; };
 		A56A72C929B2B51300BA4D64 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56A72C829B2B51300BA4D64 /* View+Extension.swift */; };
+		A58A850C29E8361400DE7196 /* GenerateImageWithInitials.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A850B29E8361400DE7196 /* GenerateImageWithInitials.swift */; };
 		A59500F3299039D0002070B8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59500F2299039D0002070B8 /* ProfileVC.swift */; };
 		A5BB54B829B4C151009F5B65 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB54B729B4C151009F5B65 /* FavoritesVC.swift */; };
 		A5BB54BA29B4C163009F5B65 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB54B929B4C163009F5B65 /* FavoritesTableViewCell.swift */; };
@@ -58,6 +59,7 @@
 		A5408B0E29E4B1D700919209 /* sf-ui-display-thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-thin.otf"; sourceTree = "<group>"; };
 		A5408B0F29E4B1D700919209 /* sf-ui-display-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-medium.otf"; sourceTree = "<group>"; };
 		A56A72C829B2B51300BA4D64 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		A58A850B29E8361400DE7196 /* GenerateImageWithInitials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImageWithInitials.swift; sourceTree = "<group>"; };
 		A59500F2299039D0002070B8 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		A5BB54B729B4C151009F5B65 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		A5BB54B929B4C163009F5B65 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,14 +96,11 @@
 		A52CF668298ECFDD0010979F /* myContacts */ = {
 			isa = PBXGroup;
 			children = (
-				A52CF68C298ED72C0010979F /* Assets */,
-				A52CF68A298ED6F60010979F /* CoreData */,
-				A56A72C729B2B4F900BA4D64 /* Extensions */,
-				A52CF68E298ED7550010979F /* ViewControllers */,
+				A58A850829E8356D00DE7196 /* Application */,
+				A58A850929E835D800DE7196 /* Core */,
+				A52CF68E298ED7550010979F /* Controllers */,
 				A52CF68D298ED7460010979F /* Storyboards */,
-				A5408B0729E4B1A100919209 /* Fonts */,
-				A52CF68B298ED7200010979F /* Supporting files */,
-				A52CF67A298ECFDE0010979F /* Info.plist */,
+				A52CF68B298ED7200010979F /* Resources */,
 			);
 			path = myContacts;
 			sourceTree = "<group>";
@@ -116,39 +115,32 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		A52CF68B298ED7200010979F /* Supporting files */ = {
+		A52CF68B298ED7200010979F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A52CF669298ECFDD0010979F /* AppDelegate.swift */,
-				A52CF66B298ECFDD0010979F /* SceneDelegate.swift */,
-			);
-			path = "Supporting files";
-			sourceTree = "<group>";
-		};
-		A52CF68C298ED72C0010979F /* Assets */ = {
-			isa = PBXGroup;
-			children = (
+				A5408B0729E4B1A100919209 /* Fonts */,
 				A52CF675298ECFDE0010979F /* Assets.xcassets */,
+				A52CF677298ECFDE0010979F /* LaunchScreen.storyboard */,
+				A52CF67A298ECFDE0010979F /* Info.plist */,
 			);
-			path = Assets;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A52CF68D298ED7460010979F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				A52CF66F298ECFDD0010979F /* Main.storyboard */,
-				A52CF677298ECFDE0010979F /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		A52CF68E298ED7550010979F /* ViewControllers */ = {
+		A52CF68E298ED7550010979F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				A5829EAA29B3A79000C11FE0 /* Pages */,
 				A5829EAB29B3A7A600C11FE0 /* Cells */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A5408B0729E4B1A100919209 /* Fonts */ = {
@@ -193,6 +185,33 @@
 				A5BB54B929B4C163009F5B65 /* FavoritesTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		A58A850829E8356D00DE7196 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A52CF669298ECFDD0010979F /* AppDelegate.swift */,
+				A52CF66B298ECFDD0010979F /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A58A850929E835D800DE7196 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A52CF68A298ED6F60010979F /* CoreData */,
+				A56A72C729B2B4F900BA4D64 /* Extensions */,
+				A58A850A29E835E900DE7196 /* Helpers */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A58A850A29E835E900DE7196 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A58A850B29E8361400DE7196 /* GenerateImageWithInitials.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A52CF674298ECFDD0010979F /* myContacts.xcdatamodeld in Sources */,
+				A58A850C29E8361400DE7196 /* GenerateImageWithInitials.swift in Sources */,
 				A50A460129E5DAB50083AE3D /* UIImageView+Extension.swift in Sources */,
 				A59500F3299039D0002070B8 /* ProfileVC.swift in Sources */,
 				A52CF66E298ECFDD0010979F /* HomeVC.swift in Sources */,
@@ -441,7 +461,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NW6K64987Z;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = myContacts/Info.plist;
+				INFOPLIST_FILE = myContacts/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -473,7 +493,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NW6K64987Z;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = myContacts/Info.plist;
+				INFOPLIST_FILE = myContacts/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
