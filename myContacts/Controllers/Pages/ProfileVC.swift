@@ -52,6 +52,8 @@ class ProfileVC: UIViewController {
         request.sortDescriptors = [sort]
         profilePicture.applyshadowWithCornerInProfilePage(containerView: containerView, cornerRadious: profilePicture.frame.height / 2)
         imagePicker.delegate = self
+        editNameTextField.delegate = self
+        editLastnameTextField.delegate = self
         editPhoneNumberTextField.delegate = self
         navigationController?.navigationBar.isHidden = true
         overrideUserInterfaceStyle = .light
@@ -275,6 +277,14 @@ extension ProfileVC: UITextFieldDelegate {
         }
         editPhoneNumberTextField.text = formattedText
         return false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        view.frame.origin.y = view.frame.origin.y - 130
+    }
+       
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        view.frame.origin.y = view.frame.origin.y + 130
     }
 }
 

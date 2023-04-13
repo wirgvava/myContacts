@@ -28,6 +28,8 @@ class AddContactVC: UIViewController {
         super.viewDidLoad()
         setupGestures()
         imagePicker.delegate = self
+        nameTextField.delegate = self
+        lastNameTextField.delegate = self
         phoneNumberTextField.delegate = self
         uploadPhotoBtn.layer.cornerRadius = uploadPhotoBtn.frame.height / 2
         navigationController?.navigationBar.isHidden = false
@@ -93,6 +95,14 @@ extension AddContactVC: UITextFieldDelegate {
         }
         phoneNumberTextField.text = formattedText
         return false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        view.frame.origin.y = view.frame.origin.y - 130
+    }
+       
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        view.frame.origin.y = view.frame.origin.y + 130
     }
 }
 
