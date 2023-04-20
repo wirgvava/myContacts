@@ -50,6 +50,8 @@ class ProfileVC: UIViewController {
         loadProfilePicture()
         loadEditPageAsHidden()
         request.sortDescriptors = [sort]
+        profilePicture.layer.borderWidth = 5
+        profilePicture.layer.borderColor = CGColor(gray: 1, alpha: 1)
         profilePicture.applyshadowWithCornerInProfilePage(containerView: containerView, cornerRadious: profilePicture.frame.height / 2)
         imagePicker.delegate = self
         editNameTextField.delegate = self
